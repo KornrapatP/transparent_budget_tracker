@@ -1,0 +1,4 @@
+start RequestFlow issuer: PartyB, title: "test", description: "Funding for testing", amount: 1000
+run vaultQuery contractStateType: com.template.states.TransferState
+start DeclineFlow uid: ""
+start ApproveFlow uid: "", amount: 1000
