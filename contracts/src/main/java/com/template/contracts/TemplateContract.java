@@ -74,6 +74,10 @@ public class TemplateContract implements Contract {
         if(tx.getOutputStates().size() != 0) throw new IllegalArgumentException("Zero Output Expected");
         TransferState input = (TransferState) tx.getInput(0);
         Command command = tx.getCommand(0);
+        if (!command.getSigners().contains(input.getIssuer().getOwningKey())) throw new IllegalArgumentException("Signers not present in the command!");
+        if (command.getSigners().size()!=1) throw new IllegalArgumentException("Signers in command should be 2!");
+        if (input.getApprove()) throw new IllegalArgumentException("Cannot decline approved states!");
+
     }
 
     // Used to indicate the transaction's intent.
